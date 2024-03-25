@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>project 1</title>
+</head>
+<body>
+    
+    <form action="" id="form" onsubmit="return false">
+        <h2>login untuk mendapatkan Token!</h2>
+
+        <label for="name">username</label><br>
+        <input type="text" name="username" id="username" autocomplete="off"><br><br>
+
+        <label for="password">password</label><br>
+        <input type="password" name="password" id="password"><br><br>
+
+        <button id="btn-login">Login</button>
+    </form>
+
+    <div class="result"></div>
+
+    <div class="token-display">
+        <h2>Masukan Token untuk mendapatkan API key Anda :</h2>
+        <input type="text" id="tokenInput" placeholder="masukan token Anda!" autocomplete="off">
+        <button id="submit">submit</button>
+    </div>
+
+    <div class="apikey-display">
+        <h2>Masukan API Key Anda untuk mendapatkan Gambar :</h2>
+        <input type="text" id="apikeyInput" placeholder="masukan API Key Anda!" autocomplete="off">
+        <button id="submitApikey">submit</button>
+    </div>
+
+    <div class="result-img"></div>
+
+    <script src="script/project1.js"></script>
+</body>
+</html>
