@@ -9,7 +9,6 @@ const apikeyDisplay = document.querySelector(".apikey-display");
 
 let resultAll;
 
-
 const picture = [
   {
     name1: "gambar 1",
@@ -24,9 +23,114 @@ const picture = [
   {
     name3: "gambar 3",
     img3: "assets/img/produk-kopi3.jpg",
-  }
+  },
 ];
 
+function login() {
+  const token = Math.random();
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (username.value == "rifki" && password.value == "rifki") {
+        resolve({ token });
+      } else {
+        reject("Password atau username Anda salah!");
+      }
+    }, 900);
+  });
+}
+
+function getApiKey() {
+  return new Promise((resolve, reject) => {
+  if (inputToken.value == resultAll) {
+    setTimeout(() => {
+      resolve({ apikey: "yzk1470f0" });
+    }, 1500);
+  } else {
+    reject("Token yang Anda masukan Salah!")
+  }
+  })
+}
+
+function getPicture() {
+  return new Promise((resolve,reject) => {
+    if (inputApikey.value == resultAll) {
+      setTimeout(() => {
+        resolve(picture);
+      }, 3000);
+    } else {
+      reject('apikey yang Anda masukan salah!');
+    }
+
+  })
+}
+
+
+
+// implementasi asynchronous menggunakan promise
+
+document.querySelector("#btn-login").addEventListener("click", () => {
+  let info = `<p>sedang memproses Token Anda!..Silahkan tunggu!</p>`;
+  wrapResult.innerHTML = info;
+  const loginuser = login();
+  loginuser.then((result) => {
+    const { token } = result;
+    wrapResult.innerHTML = `<p> Token Anda adalah : <span>${token}</span></p>`;
+    tokenDisplay.style.display = "block";
+    resultAll = token;
+  }).catch(err => {wrapResult.innerHTML = err});
+});
+
+
+document.querySelector("#submit").addEventListener("click", () => {
+  let info = `<p>sedang memproses Apikey Anda!..Silahkan tunggu!</p>`;
+  wrapResult.innerHTML = info;
+  const getApikeyUser = getApiKey();
+  getApikeyUser.then(result => {
+    const {apikey} = result;
+    wrapResult.innerHTML = `<p>API Key Anda adalah : <span>${apikey}</span></p>`;
+    apikeyDisplay.style.display = "block";
+    tokenDisplay.style.display = "none";
+    resultAll = apikey;
+  }).catch(err => wrapResult.innerHTML = err);
+});
+
+document.querySelector("#submitApikey").addEventListener("click", () => {
+  let info = `<p>sedang memproses tampilan gambar Anda..Silahkan tunggu!</p>`;
+  wrapResult.innerHTML = info;
+  const getPictureUser = getPicture();
+
+  getPictureUser.then(result => {
+    const [gambar1, gambar2, gambar3] = result;
+    const {name1, img1} = gambar1;
+    const {name2, img2} = gambar2;
+    const {name3, img3} = gambar3;
+
+    wrapResultImg.innerHTML = 
+    `
+    <div class="wrap-img">
+    <div class="container-content">
+        <p>${name1}</p>
+        <img src="${img1}" alt="">
+    </div>
+
+    <div class="container-content">
+        <p>${name2}</p>
+        <img src="${img2}" alt="">
+    </div>
+    
+    <div class="container-content">
+        <p>${name3}</p>
+        <img src="${img3}" alt="">
+    </div>
+  </div>
+    `
+  }).catch(err => {wrapResult.innerHTML = err});
+
+});
+
+/* Implementasi Asynchronus menggunakan Callback dan DOM */
+
+/* 
 
 function login(callback) {
   const token = Math.random();
@@ -50,9 +154,6 @@ function getPicture(apikey, callback) {
     }, 3000);
   }
 }
-
-
-/* Implementasi Asynchronus menggunakan Callback dan DOM */
 
 function renderUser(result) {
   wrapResult.innerHTML += result;
@@ -140,3 +241,6 @@ document.querySelector("#submitApikey").addEventListener("click", () => {
     alert("Maaf Apikey yang Anda masukan salah! Tidak bisa mengakses gambar Anda");
   }
 });
+
+
+*/
