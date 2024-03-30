@@ -60,13 +60,75 @@ function getPicture() {
     } else {
       reject('apikey yang Anda masukan salah!');
     }
-
   })
 }
 
 
+// implementasi asynchronous menggunakan Async await
+document.querySelector("#btn-login").addEventListener('click', async function() {
+  let info = `<p>sedang memproses Token Anda!..Silahkan tunggu!</p>`;
+  wrapResult.innerHTML = info;
+  try {
+    const {token} = await login();
+    wrapResult.innerHTML = `<p> Token Anda adalah : <span>${token}</span></p>`;
+    tokenDisplay.style.display = "block";
+    resultAll = token;
+  } catch (err) {
+    wrapResult.innerHTML = err;
+  }
+})
+
+document.querySelector("#submit").addEventListener('click', async function() {
+  let info = `<p>sedang memproses Apikey Anda!..Silahkan tunggu!</p>`;
+  wrapResult.innerHTML = info;
+  try {
+    const {apikey} = await getApiKey();
+    wrapResult.innerHTML = `<p>API Key Anda adalah : <span>${apikey}</span></p>`;
+    apikeyDisplay.style.display = "block";
+    tokenDisplay.style.display = "none";
+    resultAll = apikey;
+  } catch (err) {
+    wrapResult.innerHTML = err;
+  }
+})
+
+document.querySelector("#submitApikey").addEventListener('click', async function() {
+  let info = `<p>sedang memproses tampilan gambar Anda..Silahkan tunggu!</p>`;
+  wrapResult.innerHTML = info;
+  try {
+    const [gambar1, gambar2, gambar3] = await getPicture();
+    const {name1, img1} = gambar1;
+    const {name2, img2} = gambar2;
+    const {name3, img3} = gambar3;
+
+    wrapResultImg.innerHTML = 
+    `
+    <div class="wrap-img">
+    <div class="container-content">
+        <p>${name1}</p>
+        <img src="${img1}" alt="">
+    </div>
+
+    <div class="container-content">
+        <p>${name2}</p>
+        <img src="${img2}" alt="">
+    </div>
+    
+    <div class="container-content">
+        <p>${name3}</p>
+        <img src="${img3}" alt="">
+    </div>
+  </div>
+  `
+  } catch(err) {
+    wrapResult.innerHTML = err;
+  }
+})
+
 
 // implementasi asynchronous menggunakan promise
+
+/*
 
 document.querySelector("#btn-login").addEventListener("click", () => {
   let info = `<p>sedang memproses Token Anda!..Silahkan tunggu!</p>`;
@@ -127,6 +189,10 @@ document.querySelector("#submitApikey").addEventListener("click", () => {
   }).catch(err => {wrapResult.innerHTML = err});
 
 });
+
+*/
+
+
 
 /* Implementasi Asynchronus menggunakan Callback dan DOM */
 
