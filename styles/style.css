@@ -1,4 +1,6 @@
-.result {
+/* callback, promise, async await style */
+
+/* .result {
     border: 3px solid black;
     width: 300px;
     height: 100px;
@@ -26,4 +28,32 @@
 img {
     width: 300px;
     height: 300px;
+} */
+
+/* render data mahasiswa styling */
+
+#demo {
+  margin-top: 30px;
+}
+
+#demo .wraper-img {
+  width: max-content;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 20px;
+  display: flex;
+  gap: 20px;
+  background-color: rgb(78, 161, 78);
+}
+
+.wraper-img img {
+  /* width: px; */
+  /* height: auto; */
+  border-radius: 20px;
+}
+
+.wraper-img .desc-mhs p {
+    color: white;
+    font-weight: bolder;
+    font-size: 24px;
 }

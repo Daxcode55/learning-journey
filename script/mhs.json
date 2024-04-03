@@ -1,0 +1,25 @@
+[
+    {
+        "nama" : "rifki",
+        "semester" : 5,
+        "nim" : 342345 
+    },
+
+    {
+        "nama" : "isal",
+        "semester" : 6,
+        "nim" : 329087
+    },
+
+    {
+        "nama" : "jamal",
+        "semester" : 5,
+        "nim" : 3133445
+    },
+
+    {
+        "nama" : "reza",
+        "semester" : 8,
+        "nim" : 324899
+    }
+]
